@@ -2,14 +2,10 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { useCarrinho } from '@/context/CarrinhoContext'
-
 export default function Produto() {
   const { query } = useRouter()
 
   // Produto fictício
-  const { adicionar } = useCarrinho()
-
   const produto = {
     id: query.id,
     nome: 'Dior Sauvage Eau de Toilette',
@@ -30,7 +26,7 @@ export default function Produto() {
             <h1 className="text-2xl font-bold mb-2">{produto.nome}</h1>
             <p className="mb-4 text-sm text-gray-600">{produto.descricao}</p>
             <p className="text-xl font-semibold text-indigo-600 mb-4">€ {produto.preco.toFixed(2)}</p>
-            <button onClick={() => adicionar(produto)} className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Adicionar ao Carrinho</button>
+            <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Adicionar ao Carrinho</button>
             <div className="mt-4">
               <Link href="/produtos" className="text-indigo-500 hover:underline text-sm">← Voltar para Produtos</Link>
             </div>
