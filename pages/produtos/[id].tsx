@@ -10,8 +10,9 @@ export default function Produto() {
   // Produto fictício
   const { adicionar } = useCarrinho()
 
-  const produto = {
-    id: query.id,
+ const produto = {
+  id: query.id ?? 'sem-id',
+
     nome: 'Dior Sauvage Eau de Toilette',
     descricao: 'Fragrância amadeirada e fresca com notas de bergamota e ambroxan. Ideal para homens modernos.',
     preco: 89.90,
