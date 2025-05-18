@@ -1,7 +1,7 @@
 
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { CarrinhoProvider, useCarrinho } from '@/context/CarrinhoContext'
+import { CarrinhoProvider } from "../context/CarrinhoContext";
 import Link from 'next/link'
 
 function CarrinhoNav() {
