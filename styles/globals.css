@@ -1,7 +1,1 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply font-sans;
-}
+/* Tailwind customizado com rosa claro, dourado rosé, marsala */
