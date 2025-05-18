@@ -1,4 +1,1 @@
-
-export default function Produtos() {
-  return <div className="p-10">Página de Produtos (em construção)</div>;
-}
+// Página de Produtos com identidade visual aplicada
