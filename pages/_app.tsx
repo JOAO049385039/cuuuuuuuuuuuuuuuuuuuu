@@ -4,8 +4,8 @@ import { CarrinhoProvider, useCarrinho } from "@/context/CarrinhoContext";
 import Link from 'next/link'
 
 function CarrinhoNav() {
-  const { carrinho } = useCarrinho()
-  const quantidade = carrinho.length
+const { itens } = useCarrinho()
+const quantidade = itens.length
 
   return (
     <Link href="/checkout" className="text-sm text-indigo-600 hover:underline ml-6">
