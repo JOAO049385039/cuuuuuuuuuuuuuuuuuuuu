@@ -1,1 +1,1 @@
-<h1>Página Inicial</h1>
+export default function Home() { return <div>Página Inicial</div> }

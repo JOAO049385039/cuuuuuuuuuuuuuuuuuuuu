@@ -1,1 +1,1 @@
-<h1>Contato</h1>
+export default function Contato() { return <div>Contato</div> }
