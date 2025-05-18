@@ -1,1 +1,10 @@
-/* Tailwind customizado com rosa claro, dourado rosé, marsala */
+
+/* Paleta personalizada */
+:root {
+  --rosa-claro: #f8e1e7;
+  --dourado-rose: #d4af91;
+  --marsala: #964f4c;
+}
+.text-marsala { color: var(--marsala); }
+.text-dourado { color: var(--dourado-rose); }
+.bg-marsala { background-color: var(--marsala); }
