@@ -1,45 +1,42 @@
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Link from 'next/link'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useCarrinho } from '@/context/CarrinhoContext'
 
-const ProdutoDetalhe = () => {
-  const router = useRouter();
-  const { id } = router.query;
+export default function Produto() {
+  const { query } = useRouter()
+
+  // Produto fictício
+  const { adicionar } = useCarrinho()
 
   const produto = {
-    id: id ?? "produto-sem-id",
-    nome: "Dior Sauvage Eau de Toilette",
-    descricao: "...",
+    id: query.id,
+    nome: 'Dior Sauvage Eau de Toilette',
+    descricao: 'Fragrância amadeirada e fresca com notas de bergamota e ambroxan. Ideal para homens modernos.',
     preco: 89.90,
-    imagem: "/images/sauvage.jpg"
-  };
-
-  const precoComIVA = produto.preco * 1.23;
+    imagem: '/sauvage.jpg'
+  }
 
   return (
-    <div className="p-8 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div className="w-full aspect-square bg-gray-100 flex items-center justify-center">
-        <span className="text-xs">{produto.nome}</span>
-      </div>
-      <div>
-        <h1 className="text-2xl font-bold mb-2">{produto.nome}</h1>
-        <p className="mb-4 text-sm text-gray-600">{produto.descricao}</p>
-        <p className="text-xl font-semibold text-indigo-600 mb-4">
-          € {precoComIVA.toFixed(2)}{" "}
-          <span className="text-sm text-gray-500">(IVA incluído)</span>
-        </p>
-        <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">
-          Adicionar ao Carrinho
-        </button>
-        <div className="mt-4">
-          <Link href="/produtos" className="text-indigo-500 hover:underline text-sm">
-            ← Voltar para Produtos
-          </Link>
+    <div className="min-h-screen bg-white text-gray-900">
+      <Head>
+        <title>{produto.nome} - Divino Encanto</title>
+      </Head>
+      <main className="max-w-4xl mx-auto p-6">
+        <div className="flex flex-col md:flex-row gap-6">
+          <img src={produto.imagem} alt={produto.nome} className="w-full md:w-1/3 object-cover rounded shadow" />
+          <div className="flex-1">
+            <h1 className="text-2xl font-bold mb-2">{produto.nome}</h1>
+            <p className="mb-4 text-sm text-gray-600">{produto.descricao}</p>
+            <p className="text-xl font-semibold text-indigo-600 mb-4">€ {produto.preco.toFixed(2)}</p>
+            <button onClick={() => adicionar(produto)} className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Adicionar ao Carrinho</button>
+            <div className="mt-4">
+              <Link href="/produtos" className="text-indigo-500 hover:underline text-sm">← Voltar para Produtos</Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
-  );
-};
-
-export default ProdutoDetalhe;
+  )
+}

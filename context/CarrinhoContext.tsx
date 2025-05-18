@@ -1,38 +1,39 @@
+import { createContext, useContext, useState, ReactNode } from 'react'
 
-import { createContext, useContext, useState, ReactNode } from 'react';
-
-export type ItemCarrinho = { id: string; nome: string; preco: number; quantidade: number };
-
-interface CarrinhoContextType {
-  itens: ItemCarrinho[];
-  adicionar: (item: ItemCarrinho) => void;
-  limpar: () => void;
+type Produto = {
+  id: string | string[]
+  nome: string
+  preco: number
 }
 
-const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
+type CarrinhoContextType = {
+  itens: Produto[]
+  adicionar: (produto: Produto) => void
+  limpar: () => void
+}
 
-export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
-  const [itens, setItens] = useState<ItemCarrinho[]>([]);
+const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined)
 
-  const adicionar = (item: ItemCarrinho) => {
-    setItens([...itens, item]);
-  };
+export function CarrinhoProvider({ children }: { children: ReactNode }) {
+  const [itens, setItens] = useState<Produto[]>([])
 
-  const limpar = () => {
-    setItens([]);
-  };
+  const adicionar = (produto: Produto) => {
+    setItens([...itens, produto])
+  }
+
+  const limpar = () => setItens([])
 
   return (
     <CarrinhoContext.Provider value={{ itens, adicionar, limpar }}>
       {children}
     </CarrinhoContext.Provider>
-  );
-};
+  )
+}
 
-export const useCarrinho = () => {
-  const context = useContext(CarrinhoContext);
+export function useCarrinho() {
+  const context = useContext(CarrinhoContext)
   if (!context) {
-    throw new Error('useCarrinho deve ser usado dentro de um CarrinhoProvider');
+    throw new Error('useCarrinho deve ser usado dentro de um CarrinhoProvider')
   }
-  return context;
-};
+  return context
+}

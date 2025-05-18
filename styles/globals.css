@@ -1,4 +1,7 @@
-/* Tailwind base importado aqui */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-sans;
+}
