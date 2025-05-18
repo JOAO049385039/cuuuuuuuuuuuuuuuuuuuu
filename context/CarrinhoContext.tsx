@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Produto = {
@@ -10,21 +9,26 @@ type Produto = {
 };
 
 type CarrinhoContextType = {
-  carrinho: Produto[];
+  itens: Produto[];
   adicionar: (produto: Produto) => void;
+  limpar: () => void;
 };
 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
 
 export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
-  const [carrinho, setCarrinho] = useState<Produto[]>([]);
+  const [itens, setItens] = useState<Produto[]>([]);
 
   const adicionar = (produto: Produto) => {
-    setCarrinho((prev) => [...prev, produto]);
+    setItens(prev => [...prev, produto]);
+  };
+
+  const limpar = () => {
+    setItens([]);
   };
 
   return (
-    <CarrinhoContext.Provider value={{ carrinho, adicionar }}>
+    <CarrinhoContext.Provider value={{ itens, adicionar, limpar }}>
       {children}
     </CarrinhoContext.Provider>
   );
