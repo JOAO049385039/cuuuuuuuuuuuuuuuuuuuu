@@ -11,12 +11,13 @@ export default function Produto() {
   const { adicionar } = useCarrinho()
 
   const produto = {
-    id: query.id,
-    nome: 'Dior Sauvage Eau de Toilette',
-    descricao: 'Fragrância amadeirada e fresca com notas de bergamota e ambroxan. Ideal para homens modernos.',
-    preco: 89.90,
-    imagem: '/sauvage.jpg'
-  }
+  id: query.id ?? 'produto-sem-id',
+  nome: 'Dior Sauvage Eau de Toilette',
+  descricao: '...',
+  preco: 89.90,
+  imagem: '/sauvage.jpg'
+}
+
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
