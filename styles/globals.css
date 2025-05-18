@@ -4,6 +4,6 @@
 @tailwind utilities;
 
 body {
-  background: #fff0f5;
-  color: #4a1c2e;
+  background-color: #fcebee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

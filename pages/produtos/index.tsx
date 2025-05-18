@@ -1,52 +1,32 @@
-import Head from 'next/head'
-import Link from 'next/link'
+
+import { useCarrinho } from '@/context/CarrinhoContext'
 
 const produtos = [
-  {
-    id: '1',
-    nome: 'Dior Sauvage Eau de Toilette',
-    preco: 89.90,
-    imagem: '/sauvage.jpg'
-  },
-  {
-    id: '2',
-    nome: 'Creme Facial Nivea Soft',
-    preco: 5.49,
-    imagem: '/nivea.jpg'
-  },
-  {
-    id: '3',
-    nome: 'Whey Protein Max Titanium 900g',
-    preco: 29.99,
-    imagem: '/whey.jpg'
-  },
-  {
-    id: '4',
-    nome: 'Fones Bluetooth JBL Tune 510BT',
-    preco: 49.99,
-    imagem: '/jbl.jpg'
-  }
+  { id: '1', nome: 'Perfume Elegante', preco: 29.90, imagem: '', descricao: 'Fragrância marcante e sofisticada' },
+  { id: '2', nome: 'Creme Hidratante', preco: 14.50, imagem: '', descricao: 'Pele macia e nutrida' }
 ]
 
 export default function Produtos() {
+  const { adicionar } = useCarrinho()
+
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <Head>
-        <title>Produtos - Divino Encanto</title>
-      </Head>
-      <main className="max-w-6xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-6">Todos os Produtos</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {produtos.map(prod => (
-            <Link href={`/produtos/${prod.id}`} key={prod.id} className="border p-4 rounded shadow-sm hover:shadow-lg transition">
-              <img src={prod.imagem} alt={prod.nome} className="w-full h-40 object-cover mb-2 rounded" />
-              <h2 className="font-semibold">{prod.nome}</h2>
-              <p className="text-indigo-600 font-bold mt-1">€ {prod.preco.toFixed(2)}</p>
-            </Link>
-          ))}
-        </div>
-        <Link href="/" className="inline-block mt-6 text-indigo-500 hover:underline text-sm">← Voltar para Home</Link>
-      </main>
+    <div className="p-8 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4 text-marsala">Produtos</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {produtos.map((produto) => (
+          <div key={produto.id} className="border p-4 rounded-lg bg-white shadow-md">
+            <h2 className="text-lg font-semibold text-douradoRose">{produto.nome}</h2>
+            <p className="text-sm text-gray-600">{produto.descricao}</p>
+            <p className="font-bold text-marsala mt-2">€ {(produto.preco * 1.23).toFixed(2)} (IVA incluído)</p>
+            <button
+              className="mt-2 px-4 py-1 bg-douradoRose text-white rounded hover:bg-marsala"
+              onClick={() => adicionar(produto)}
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
