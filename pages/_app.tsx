@@ -1,12 +1,11 @@
-
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { CarrinhoProvider } from "@/context/CarrinhoContext";
+import { CarrinhoProvider, useCarrinho } from "@/context/CarrinhoContext"
 import Link from 'next/link'
 
 function CarrinhoNav() {
-  const { itens } = useCarrinho()
-  const quantidade = itens.length
+  const { carrinho } = useCarrinho()
+  const quantidade = carrinho.length
 
   return (
     <Link href="/checkout" className="text-sm text-indigo-600 hover:underline ml-6">
