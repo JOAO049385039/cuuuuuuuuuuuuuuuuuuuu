@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cores principais do Divino Encanto */
+:root {
+  --rosa-claro: #f8e1e7;
+  --dourado-rose: #b76e79;
+  --marsala: #6c2e33;
+}
 body {
-  font-family: 'Inter', sans-serif;
+  background-color: white;
 }
