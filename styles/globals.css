@@ -1,1 +1,3 @@
-/* Tailwind customizado com rosa claro, dourado rosé, marsala */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
